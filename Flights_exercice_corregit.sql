@@ -19,7 +19,10 @@ SELECT* From Flights;
  
  SELECT  UniqueCarrier, COUNT(*)AS cancelledFlights FROM Flights WHERE  Cancelled > 0 GROUP BY UniqueCarrier ORDER BY cancelledFlights desc;
  
- SELECT FlightNum, Distance From Flights GROUP BY FlightNum, Distance ORDER BY Distance desc LIMIT 10;
+ SELECT TailNum, SUM(Distance) 
+ From Flights
+ WHERE TailNum!=NA
+ GROUP BY TailNum, Distance ORDER BY Distance desc LIMIT 10;
  
  SELECT AVG(ArrDelay) AS Delay, Description FROM flights INNER JOIN carriers ON carriers.CarrierCode = flights.UniqueCarrier GROUP BY Description HAVING Delay >10 ORDER BY Delay;
  
